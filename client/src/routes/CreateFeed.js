@@ -14,12 +14,21 @@ const theme = {
 };
 
 
+/**
+ * Component for creating news feed.
+ * Allows users to create and publish news articles.
+ */
 const CreateNewsFeed = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [category, setCategory] = useState("");
   const [file, setFile] = useState(null);
   const [status,setStatus]=useState("Draft");
+  
+  /**
+   * Handles file change event.
+   * @param {Object} e - Event object
+   */
   const handleFileChange = (e) => {
     console.log(e);
     const file=e.target.files[0];
@@ -27,19 +36,31 @@ const CreateNewsFeed = () => {
     console.log(file);
   };
   
+  /**
+   * Handles form submission for publishing news article.
+   * @param {Object} e - Event object
+   */
   const handleSubmit = async (e) => {
     setStatus("Published");
     e.preventDefault();
     console.log(file);
     await PostNews();
   };
+  
+  /**
+   * Handles form submission for saving news article as draft.
+   * @param {Object} e - Event object
+   */
   const handleDraft = async (e) => {
     setStatus("Draft");
     e.preventDefault();
-   await  PostNews();
-    
+    await PostNews();
   };
-  const PostNews=async()=>{
+  
+  /**
+   * Posts news article data to backend.
+   */
+  const PostNews = async () => {
     const currentDate = new Date();
     const day = currentDate.getDate();
     const month = currentDate.getMonth() + 1; // Month is zero-based, so we add 1
@@ -72,16 +93,25 @@ const CreateNewsFeed = () => {
       console.error("Error submitting form:", error);
     }
   }
+  
+  /**
+   * Callback function for successful response.
+   * @param {Object} result - Result object
+   */
   const successCallBack=(result)=>{
     console.log(result);
   }
+  
+  /**
+   * Callback function for failure response.
+   * @param {Object} err - Error object
+   */
   const failureCallBack=(err)=>{
     console.log(err);
   }
+  
   return (
-    
     <div className="container">
- 
       <div className="form-container">
         <h2 className="title">Create News Feed</h2>
         <form className="form" onSubmit={handleSubmit}>

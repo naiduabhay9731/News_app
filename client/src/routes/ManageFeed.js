@@ -63,8 +63,14 @@ const Button = styled.button`
   }
 `;
 
+/**
+ * Component for managing news feeds.
+ * Allows users to view, edit, and delete news feeds.
+ */
 const ManageNewsFeeds = () => {
   const [news, setnews] = useState([]);
+
+  // Fetch news feed data on component mount
   useEffect(() => {
     try {
       fetch("http://localhost:8000/")
@@ -83,6 +89,8 @@ const ManageNewsFeeds = () => {
       console.error("Error getting Data", error);
     }
   }, []);
+
+  // Handle deletion of news feed
   const handleDel = async (index) => {
     let feed = news[index];
     console.log(feed.file);
@@ -100,6 +108,7 @@ const ManageNewsFeeds = () => {
       if (!response.ok) {
         throw new Error("Failed to update form");
       } else {
+        // Reload page after deletion
         window.location.reload();
         console.log("Form Updatede successfully");
       }
@@ -108,45 +117,33 @@ const ManageNewsFeeds = () => {
     }
   };
 
-  // const newsFeeds = [
-  //   {
-  //     id: 1,
-  //     title: "News Feed 1",
-  //     category: "Category A",
-  //     creationDate: "2024-03-25",
-  //     status: "Draft",
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "News Feed 2",
-  //     category: "Category B",
-  //     creationDate: "2024-03-24",
-  //     status: "Published",
-  //   }
-  //   // More news feed data...
-  // ];
+  // Helper function to check file extension
   const checkFile = (file) => {
     const fileExtension = file.split(".").pop();
     console.log(fileExtension); // Output: jpg
     return fileExtension;
   };
+
+  // Helper functions to check if file is image or video
   const isImage = (ext) => {
     const imgExt = ["jpg", "jpeg", "png", "gif", "bmp", "svg"];
     const lcExtension = ext.toLowerCase();
     return imgExt.includes(lcExtension);
   };
+
   const isVideo = (ext) => {
     const vidExt = ["mp4", "avi", "mov", "wmv", "mkv", "flv", "webm"];
-
     const lCExtension = ext.toLowerCase();
-
     return vidExt.includes(lCExtension);
   };
+
+  // Helper function to create URL for file
   const crUrl = (url1) => {
     const url2 = "http://localhost:8000/";
     console.log(url2 + url1);
     return url2 + url1;
   };
+
   return (
     <ThemeProvider theme={theme}>
       <Container>
@@ -177,6 +174,7 @@ const ManageNewsFeeds = () => {
                   >
                     Delete
                   </Button>
+                  {/* Popup for viewing detail */}
                   <Popup trigger={<Button> View Detail </Button>} modal nested>
                     {(close) => (
                       <div className="modal mobile-scrollable-div ">

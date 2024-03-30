@@ -46,6 +46,9 @@ const StatisticItem = styled.div`
   color: #555;
 `;
 
+/**
+ * Dashboard component displaying user activity, content statistics, and top news.
+ */
 const Dashboard = () => {
   // Sample data (replace with actual data fetched from API)
   const userActivityData = [
