@@ -2,6 +2,13 @@ import React from "react";
 import styled from "styled-components";
 
 // Styled components
+const blueTheme = {
+  primaryColor: "#007bff", // Blue color for primary elements
+  secondaryColor: "#28a745", // Green color for secondary elements
+  textColor: "#333", // Dark color for text
+};
+
+// Styled components with updated blue and green theme
 const Container = styled.div`
   max-width: 1200px;
   margin: 20px auto 0;
@@ -9,10 +16,11 @@ const Container = styled.div`
   display: grid;
   gap: 30px;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  background-color: ${blueTheme.secondaryColor}; // Set background to green
 `;
 
 const Section = styled.div`
-  background-color: #fff;
+  background-color: ${blueTheme.primaryColor}; // Set background to blue
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
@@ -26,7 +34,7 @@ const Section = styled.div`
 const Title = styled.h2`
   margin-bottom: 20px;
   font-size: 24px;
-  color: #333;
+  color: ${blueTheme.textColor}; // Set text color to dark
 `;
 
 const ActivityList = styled.ul`
@@ -37,15 +45,14 @@ const ActivityList = styled.ul`
 const ActivityItem = styled.li`
   margin-bottom: 15px;
   font-size: 16px;
-  color: #555;
+  color: ${blueTheme.textColor}; // Set text color to dark
 `;
 
 const StatisticItem = styled.div`
   margin-bottom: 15px;
   font-size: 16px;
-  color: #555;
+  color: ${blueTheme.textColor}; // Set text color to dark
 `;
-
 /**
  * Dashboard component displaying user activity, content statistics, and top news.
  */

@@ -12,7 +12,7 @@ const theme = {
   textColor: "#333",
 };
 
-// Styled components
+// Styled components with updated theme
 const Container = styled.div`
   max-width: 1000px;
   margin: 20px auto 0;
@@ -29,12 +29,12 @@ const Table = styled.table`
 `;
 
 const TableHead = styled.thead`
-  background-color: "#007bff";
+  background-color: ${theme.primaryColor}; /* Updated to use primary color */
 `;
 
 const TableRow = styled.tr`
   &:nth-child(even) {
-    background-color: "#007bff";
+    background-color: ${theme.primaryColor}; /* Updated to use primary color */
   }
 `;
 
@@ -50,8 +50,8 @@ const TableCell = styled.td`
 const Button = styled.button`
   padding: 12px 24px;
   margin-right: 10px;
-  background-color: "#007bff";
-  color: black;
+  background-color: ${theme.primaryColor}; /* Updated to use primary color */
+  color: ${theme.textColor}; /* Updated to use text color */
   border: none;
   border-radius: 6px;
   cursor: pointer;
@@ -159,6 +159,7 @@ const ManageNewsFeeds = () => {
             </TableRow>
           </TableHead>
           <tbody>
+          {/* Mapping Through all the news feeds Recieved from the Get request */}
             {news.map((feed, index) => (
               <TableRow key={index}>
                 <TableCell>{feed.title}</TableCell>
@@ -174,7 +175,7 @@ const ManageNewsFeeds = () => {
                   >
                     Delete
                   </Button>
-                  {/* Popup for viewing detail */}
+                  {/* Popup for viewing detail Showing Mobile Preivew */}
                   <Popup trigger={<Button> View Detail </Button>} modal nested>
                     {(close) => (
                       <div className="modal mobile-scrollable-div ">

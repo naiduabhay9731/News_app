@@ -113,6 +113,7 @@ const CreateNewsFeed = () => {
   return (
     <div className="container">
       <div className="form-container">
+      {/* Input Form Container */}
         <h2 className="title">Create News Feed</h2>
         <form className="form" onSubmit={handleSubmit}>
           <div className="form-group">
@@ -143,6 +144,7 @@ const CreateNewsFeed = () => {
           </div>
           <div className="form-group">
             <label className="label">Upload Image or Video</label>
+            {/* File Input */}
             <input
               className="file-input"
               type="file"
@@ -155,6 +157,7 @@ const CreateNewsFeed = () => {
         </form>
       </div>
       <div className="mobile-preview-container">
+      {/* Mobile Preview Container */}
         <div className="mobile-preview">
           <SanityMobilePreview>
             <div className="mobile-scrollable-div">

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-// Styled components
+// Styled components for the navigation bar
 const NavWrapper = styled.nav`
   background-color: #333;
   padding: 12px 0; /* Adjusted padding */
@@ -78,21 +78,26 @@ const Bar = styled.div`
   margin: 4px 0;
 `;
 
+// Navigation bar component
 const NavBar = () => {
   const [showMenu, setShowMenu] = useState(false);
 
+  // Function to toggle the display of the mobile dropdown menu
   const toggleMenu = () => {
     setShowMenu(!showMenu);
   };
 
   return (
     <NavWrapper>
+      {/* Main navigation menu */}
       <NavList>
+        {/* Hamburger icon for mobile */}
         <HamburgerIcon onClick={toggleMenu}>
           <Bar />
           <Bar />
           <Bar />
         </HamburgerIcon>
+        {/* Navigation items */}
         <NavItem>
           <NavLink to="/" showMenu={showMenu}>
             Dashboard
@@ -114,6 +119,7 @@ const NavBar = () => {
           </NavLink>
         </NavItem>
       </NavList>
+      {/* Dropdown menu for mobile */}
       <DropdownMenu showMenu={showMenu}>
         <NavItem>
           <NavLink to="/" onClick={toggleMenu}>
